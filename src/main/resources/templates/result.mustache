@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .score {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .passed {
+            color: green;
+        }
+        .failed {
+            color: red;
+        }
+        .result-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .correct {
+            border-left: 5px solid green;
+        }
+        .incorrect {
+            border-left: 5px solid red;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            background-color: #2196F3;
+        }
+        .back-btn:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        
+        <div class="score">
+            Your Score: <span class="{{#passed}}passed{{/passed}}{{^passed}}failed{{/passed}}">{{score}}/{{total}}</span>
+        </div>
+        
+        <div class="results">
+            {{#results}}
+            <div class="result-item {{#correct}}correct{{/correct}}{{^correct}}incorrect{{/correct}}">
+                <strong>Question {{questionNum}}:</strong> {{correctAnswer}}<br>
+                {{#correct}}
+                <span class="passed">✓ Correct! Your answer: {{userAnswer}}</span>
+                {{/correct}}
+                {{^correct}}
+                <span class="failed">✗ Incorrect. Your answer: {{userAnswer}}</span>
+                {{/correct}}
+            </div>
+            {{/results}}
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="/quiz" class="btn">Retake Quiz</a>
+            <a href="/" class="btn back-btn">Home</a>
+        </div>
+    </div>
+</body>
+</html>
